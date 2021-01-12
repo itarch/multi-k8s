@@ -9,7 +9,7 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_0f361fdb1767_key -iv $encrypted_0f361fdb1767_iv -in google-service-account.json.enc -out google-service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
-  - glcoud components update kubectl 
+  - gcloud components update kubectl 
   - gcloud auth activate-service-account --key-file google-service-acount.json
   - gcloud config set project multi-k8s-301421
   - gcloud config set compute/zone us-central1-c
@@ -20,7 +20,7 @@ before_install:
 script:
   - docker run -e CI=true itarch/react-test npm test
 
- deploy:
+deploy:
   provider: script
   script: bash ./deploy.sh
   on:
